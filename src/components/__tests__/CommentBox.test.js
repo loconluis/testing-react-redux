@@ -1,11 +1,17 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import CommentBox from 'components/CommentBox'
+import RootProvider from 'Root'
 
 let wrapped
 
 beforeEach(() => {
-  wrapped = mount(<CommentBox />)
+  
+  wrapped = mount(
+    <RootProvider>
+      <CommentBox />
+    </RootProvider>
+  )
 })
 
 afterEach(() => {
@@ -35,6 +41,5 @@ describe('Handle events changing textarea value', () => {
     wrapped.find('form').simulate('submit', { preventDefault: () => {} })
     wrapped.update()
     expect(wrapped.find('textarea').prop('value')).toEqual('')
-    expect(wrapped.state('comment')).toBe('')
   })
 })
