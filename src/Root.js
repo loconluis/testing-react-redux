@@ -1,10 +1,19 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import reduxPromise from 'redux-promise'
 import reducers from 'reducers'
 
-export default (props) => (
-  <Provider store={createStore(reducers, props.initialState || {})}>
-    {props.children}
-  </Provider>
-)
+export default (props) => {
+  const store = createStore(
+    reducers,
+    props.initialState || {},
+    applyMiddleware(reduxPromise)
+  )
+  // return of jsx
+  return (
+    <Provider store={store}>
+      {props.children}
+    </Provider>
+  )
+}
