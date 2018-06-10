@@ -1,5 +1,5 @@
 import commentsReducer from 'reducers/comments'
-import { SAVE_COMMENT } from 'actions/types'
+import { SAVE_COMMENT, FETCH_COMMENTS } from 'actions/types'
 
 it('handle actions of type SAVE_COMMENT', () => {
   const action = {
